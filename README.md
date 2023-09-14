@@ -1,6 +1,7 @@
 # minnek-test
 Recruitment Test for Full-Stack (Node JS) Position.
 
+
 ## Documentation
 
 [Documentation](https://docs.minnekdigital.com/join/recruitment-process/challenges/full-stack.html)
@@ -18,12 +19,17 @@ Go to the project directory
   cd minnek-test
 ```
 
+Go to the task1 branch
+
+```bash
+  git checkout task1
+```
+
 Execute the script
 
 ```bash
   pnpm run run:script
 ```
-
 
 ## License
 
@@ -31,4 +37,3 @@ Execute the script
 ## Authors
 
 - [@sntwandy](https://www.github.com/sntwandy)
-
