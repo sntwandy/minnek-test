@@ -1,24 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Image from "next/image";
 import "./styles.css";
+import { getBreedsImg } from '../../services';
+import { ICardProps, ITypeMouse, } from '@/app/models/dog';
 
-interface IType {
-  type: 'mouseover' | 'mouseout'
-}
+const Card: FC<ICardProps> = ({ breed, allBreeds }) => {
 
-export default function Card() {
+  const [breedView, setBreedView] = useState<boolean>(false);
+	const [breedImg, setBreedImg] = useState<string>('');
 
-  const [breedView, setBreedView] = useState(Boolean);
-
-  const changeView = (event: IType) => {
+  const changeView = (event: ITypeMouse) => {
 		if (event.type === 'mouseover') {
       setBreedView(true)
     } else if (event.type === 'mouseout'){
       setBreedView(false);
     }
 	};
+
+	const getImg = async (breed: string) => {
+		const img = await getBreedsImg(breed);
+		setBreedImg(img);
+	}
+
+	useEffect(() => {
+		breed && allBreeds && getImg(breed);
+	}, [breed, allBreeds]);
 
 	return (
 		<div
@@ -27,20 +35,20 @@ export default function Card() {
 			onMouseOut={(event: any) => changeView(event)}
 		>
 			<figure className='card-image-container'>
-				<Image
-					src='https://img.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_1562-693.jpg?w=2000'
-					alt='Dog pic'
-					fill
-					className='image'
-				/>
+				{breedImg && (
+					<Image src={breedImg} alt='Dog pic' fill className='image' />
+				)
+				}
 				<div className={`breed-container ${breedView && "active-breed"}`}>
 					<ul>
-						<li>No 1</li>
-						<li>No 2</li>
+						{allBreeds &&
+							allBreeds[breed].map(breed => <li key={breed}>{breed}</li>)}
 					</ul>
 				</div>
 			</figure>
-			<span className='card-title'>Dog name</span>
+			<span className='card-title'>{breed}</span>
 		</div>
 	);
 }
+
+export default Card;
