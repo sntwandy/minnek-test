@@ -1,7 +1,7 @@
 'use client';
 
 import './styles.css';
-import { Card } from '../components/card';
+import { Card } from '../components';
 import { useEffect, useState } from 'react';
 import { getAllBreeds } from '../services';
 import { DogBreeds } from '../models/dog';
