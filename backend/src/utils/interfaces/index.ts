@@ -2,6 +2,13 @@
  * Interfaces types
  */
 
+// Dog
+export interface Dog {
+  name: string;
+  breed: string;
+  subBreed: string[];
+}
+
 // User interface
 export interface User {
   _id?: string;
