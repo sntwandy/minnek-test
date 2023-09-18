@@ -23,7 +23,7 @@ export default function Home() {
 	useEffect(() => {
 		getAllBreed();
 	}, []);
-
+	// TODO: Implement lazy loading for performance.
 	return (
 		<main>
 			<section className='title-section'>
