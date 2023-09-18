@@ -18,7 +18,7 @@ Go to the task3 branch
 Go to the project directory
 
 ```bash
-  cd frontend
+  cd backend
 ```
 
 Install packages

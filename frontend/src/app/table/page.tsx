@@ -11,24 +11,21 @@ export interface IBreeds {
 const TablePage = () => {
 	const [breeds, setBreeds] = useState<IBreeds[]>([]);
 	const [search, setSearch] = useState<string | undefined>();
-	const [breedEdit, setBreedEdit] = useState<IBreeds | null>(null); // Cambio: breedEdit es null al principio
+	const [breedEdit, setBreedEdit] = useState<IBreeds | null>(null);
 	const [breedEditIndex, setBreedEditIndex] = useState<number>(0);
 	const [filterBreeds, setFilterBreeds] = useState<IBreeds[]>([]);
 	const [breedNew, setBreedNew] = useState<IBreeds>({
-		name: '',
-		subBreeds: []
+		name: "",
+		subBreeds: [],
 	});
 
 	const onBreedCreate = () => {
-		setBreeds([
-			...breeds,
-			breedNew
-		])
+		setBreeds([...breeds, breedNew]);
 		setBreedNew({
-			name: '',
-			subBreeds: []
-		})
-	}
+			name: "",
+			subBreeds: [],
+		});
+	};
 
 	const onBreedEdit = (event: ChangeEvent<HTMLInputElement>) => {
 		if (breedEdit) {
@@ -44,18 +41,19 @@ const TablePage = () => {
 			setBreeds(updatedBreeds);
 			setBreedEdit(null);
 		}
-	},[breedEdit, breedEditIndex, breeds]);
+	}, [breedEdit, breedEditIndex, breeds]);
 
 	const onEditClick = (breedIndex: number) => {
 		setBreedEditIndex(breedIndex);
 		setBreedEdit(breeds[breedIndex]);
 	};
 
+	// TODO: We need to improve the delete option
 	const onDelete = (index: number) => {
 		const breedsCopy = breeds;
 		breedsCopy.splice(index, 1);
 		setBreeds(breedsCopy);
-	}
+	};
 
 	useEffect(() => {
 		if (search?.length) {
@@ -73,7 +71,7 @@ const TablePage = () => {
 		}
 	}, [breeds, search]);
 
-  return (
+	return (
 		<div className='max-w-2xl mx-auto'>
 			<div className='flex items-center justify-between flex-col mt-8'>
 				<span className='text-xl mb-2 font-semibold'>Create box</span>
