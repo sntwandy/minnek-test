@@ -25,4 +25,6 @@ router.post('/', authenticateJWT, async (req: Request, res: Response): Promise<v
   }
 });
 
+// TODO: Image funcitonality
+
 export default router;
